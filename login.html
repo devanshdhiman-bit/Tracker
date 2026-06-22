@@ -28,7 +28,7 @@ let foundUser = users.find(user => user.email === email && user.password === pas
 
 if(foundUser){
 localStorage.setItem("currentUser", JSON.stringify(foundUser));
-window.location.href = "home.html";
+window.location.href = "index.html";
 }else{
 alert("Email and password did not match");
 }
