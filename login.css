@@ -1,0 +1,397 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.front {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ── Header ── */
+.head {
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    backdrop-filter: blur(10px);
+}
+
+.topic {
+    color: #5a4fcf;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#profile {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    font-weight: bold;
+}
+
+/* ── Hero ── */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+/* ── Buttons ── */
+.buttons {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.add {
+    color: white;
+    background-color: rgb(75, 75, 237);
+    border-radius: 8px;
+    height: 40px;
+    padding: 0 20px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+}
+
+.view {
+    color: black;
+    background-color: white;
+    border-radius: 8px;
+    height: 40px;
+    padding: 0 20px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+}
+
+.view:hover { transform: scale(1.04); }
+.add:hover  { transform: scale(1.04); }
+
+/* ── Tasks Container ── */
+.tasks {
+    min-height: 400px;
+    width: 90%;
+    max-width: 980px;
+    background-color: aliceblue;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* ── Task Card ── */
+.card {
+    width: 100%;
+    min-height: 80px;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    border-radius: 8px;
+    padding: 12px 15px;
+}
+
+.task-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.task-actions button {
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ── About Cards ── */
+.about1, .about2, .about3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.2);
+    height: 60px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+.task-cmp {
+    text-decoration: none;
+    color: black;
+}
+
+/* ── Form ── */
+#saveTipBtn {
+    color: white;
+    background-color: rgb(75, 75, 237);
+    border-radius: 8px;
+    height: 40px;
+    padding: 0 20px;
+    cursor: pointer;
+    border: none;
+}
+
+#tipTitle, #tipDesc {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* ── Login Box ── */
+.login-box {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 90%;
+    max-width: 380px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    transform: translate(-50%, -200px);
+    background: white;
+    padding: 30px 20px;
+    border-radius: 10px;
+    text-align: center;
+    animation: slideDown 0.8s ease forwards;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.login-box input {
+    width: 90%;
+    padding: 8px;
+    margin: 4px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.login-box button {
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.login {
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+}
+
+.btn {
+    border-radius: 8px;
+    background-color: rgb(111, 111, 251);
+    color: white;
+    transition: 0.3s;
+    height: 40px;
+}
+
+.btn:hover { transform: scale(1.05); }
+
+/* ── Sign Up ── */
+.sign-up {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 90%;
+    max-width: 380px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    transform: translate(-50%, -200px);
+    background: white;
+    padding: 30px 20px;
+    border-radius: 10px;
+    text-align: center;
+    animation: slideDown 0.8s ease forwards;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.sign-btn {
+    border-radius: 8px;
+    background-color: rgb(111, 111, 251);
+    height: 40px;
+    color: white;
+    transition: 0.3s;
+    cursor: pointer;
+    border: none;
+}
+
+.sign-btn:hover { transform: scale(1.05); }
+
+.same {
+    padding: 8px 10px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* ── Completed Page ── */
+.completed-card {
+    width: 100%;
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-radius: 10px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.completed-card .card-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.check-icon {
+    background: white;
+    color: #10b981;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.completed-card .tip-title {
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.completed-card .tip-desc {
+    color: rgba(255,255,255,0.85);
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+.completed-card .delete-btn {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+.completed-card .delete-btn:hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateY(-1px);
+}
+
+.empty-msg {
+    text-align: center;
+    color: #888;
+    margin-top: 40px;
+    font-size: 16px;
+}
+
+.back-btn {
+    color: white;
+    background-color: rgb(75, 75, 237);
+    border-radius: 8px;
+    height: 40px;
+    padding: 0 20px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+    margin-bottom: 10px;
+}
+
+.back-btn:hover { transform: scale(1.04); }
+
+.completed-count {
+    background: #10b981;
+    color: white;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ── Button colors ── */
+.edit-btn     { background: #f59e0b; color: white; }
+.edit-btn:hover   { background: #d97706; transform: translateY(-1px); }
+.delete-btn   { background: #ef4444; color: white; }
+.delete-btn:hover { background: #dc2626; transform: translateY(-1px); }
+.cancel-btn   { background: #6b7280; color: white; }
+.cancel-btn:hover { background: #4b5563; transform: translateY(-1px); }
+.complete-btn { background: #10b981; color: white; }
+.complete-btn:hover { background: #059669; transform: translateY(-1px); }
+
+/* ── Animation ── */
+@keyframes slideDown {
+    from { transform: translate(-50%, -200px); opacity: 0; }
+    to   { transform: translate(-50%, 0);      opacity: 1; }
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+    .hero { padding: 15px 10px; }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .add, .view {
+        width: 200px;
+    }
+
+    .tasks {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .task-actions {
+        flex-wrap: wrap;
+    }
+
+    .page-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .completed-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    h1 { font-size: 22px; text-align: center; }
+    h4 { font-size: 14px; text-align: center; }
+}

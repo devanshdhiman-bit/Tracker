@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body class="front">
+    <header class="head">
+      <div class="topic">Tracker</div>
+
+      <nav id="profile"></nav>
+    </header>
+    <section class="hero">
+      <h6 class="welcome-text"></h6>
+      <h1>
+        Track Your Daily Tasks <br />
+        Efficiently
+      </h1>
+      <h4>Organize your work be consistent and become prodictive</h4>
+      <div class="buttons">
+        <button class="add" id="add_btn">Add Task</button
+        ><button class="view" id="view-btn">View task</button>
+      </div>
+      <div class="tasks">
+        <div class="info">
+          
+          <a href="COMPLETE.HTML" class="task-cmp"><div class="about2">
+            <div><img src="icon2.svg" alt="" /></div>
+            <div class="txt">Task Completed</div>
+          </div></a>
+          
+        </div>
+        <div id="formBox" style="display: none; margin: 10px 0">
+          <input type="text" id="tipTitle" placeholder="Enter tip title" />
+          <br /><br />
+          <textarea id="tipDesc" placeholder="Enter tip description"></textarea>
+          <br /><br />
+          <button id="saveTipBtn">Save Task</button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+ <script>
+      let userData = JSON.parse(localStorage.getItem("currentUser"));
+      let user = userData ? userData.username : null;
+
+      let welcome = document.querySelector(".welcome-text");
+      welcome.innerHTML = user ? `Welcome <b>${user}</b>` : "Welcome";
+
+      if (user) {
+        let nav = document.getElementById("profile");
+        let pfp = document.createElement("h3");
+        pfp.innerText = user;
+        nav.appendChild(pfp);
+      }
+
+      let taskKey = user + "_tasks";
+      let completedKey = user + "_completed";
+
+      function renderTasks() {
+        document.querySelectorAll(".card").forEach(c => c.remove());
+        let tasks = JSON.parse(localStorage.getItem(taskKey)) || [];
+        tasks.forEach((task, index) => createTaskCard(task, index));
+      }
+
+      function createTaskCard(task, index) {
+        let card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="tip-title">${task.title}</div>
+          <div class="tip-desc">${task.desc}</div>
+          <div class="task-actions" style="display:none;">
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">Delete</button>
+            <button class="cancel-btn">Cancel</button>
+            <button class="complete-btn">Completed</button>
+          </div>
+        `;
+
+        card.addEventListener("click", function () {
+          card.querySelector(".task-actions").style.display = "block";
+        });
+
+        card.querySelector(".cancel-btn").addEventListener("click", function (e) {
+          e.stopPropagation();
+          card.querySelector(".task-actions").style.display = "none";
+        });
+
+        card.querySelector(".delete-btn").addEventListener("click", function (e) {
+          e.stopPropagation();
+          let tasks = JSON.parse(localStorage.getItem(taskKey)) || [];
+          tasks.splice(index, 1);
+          localStorage.setItem(taskKey, JSON.stringify(tasks));
+          renderTasks();
+        });
+
+        card.querySelector(".complete-btn").addEventListener("click", function (e) {
+          e.stopPropagation();
+          let tasks = JSON.parse(localStorage.getItem(taskKey)) || [];
+          let completed = JSON.parse(localStorage.getItem(completedKey)) || [];
+          completed.push(tasks[index]);
+          tasks.splice(index, 1);
+          localStorage.setItem(taskKey, JSON.stringify(tasks));
+          localStorage.setItem(completedKey, JSON.stringify(completed));
+          renderTasks();
+        });
+
+        document.querySelector(".tasks").appendChild(card);
+      }
+
+      renderTasks();
+
+      document.getElementById("add_btn").addEventListener("click", function () {
+        document.getElementById("formBox").style.display = "block";
+      });
+
+      document.getElementById("saveTipBtn").addEventListener("click", function () {
+        let title = document.getElementById("tipTitle").value.trim();
+        let desc = document.getElementById("tipDesc").value.trim();
+        if (title === "" || desc === "") { alert("Please fill all fields"); return; }
+        let tasks = JSON.parse(localStorage.getItem(taskKey)) || [];
+        tasks.push({ title, desc });
+        localStorage.setItem(taskKey, JSON.stringify(tasks));
+        document.getElementById("tipTitle").value = "";
+        document.getElementById("tipDesc").value = "";
+        document.getElementById("formBox").style.display = "none";
+        renderTasks();
+      });
+    </script>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+<link rel="stylesheet" href="login.css">
+</head>
+<body class="front">
+<div class="sign-up">
+<h2 class="sign-style">Sign Up</h2>
+<input type="text" placeholder="Enter username" class="same" id="name">
+<input type="email" placeholder="Email" class="same" id="email">
+<input type="password" placeholder="Enter password" class="same" id="password">
+<input type="password" placeholder="Confirm Password" class="same" id="confirm">
+<button class="sign-btn" id="button">Sign In</button>
+<h4>Already have a account ? <a href="login.html">Login</a></h4>
+</div>
+
+<script>
+let btn = document.getElementById("button");
+
+btn.addEventListener("click", function () {
+let name = document.getElementById("name").value;
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+let confirm_pass = document.getElementById("confirm").value;
+
+if (password !== confirm_pass) {
+alert("Password incorrect");
+return;
+}
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+let newUser = {
+username: name,
+email: email,
+password: password,
+tasks: []
+};
+
+users.push(newUser);
+
+localStorage.setItem("users", JSON.stringify(users));
+
+window.location.href = "login.html";
+});
+</script>
+</body>
+</html>

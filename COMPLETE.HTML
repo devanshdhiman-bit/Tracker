@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Completed Tasks</title>
+    <link rel="stylesheet" href="login.css" />
+
+  </head>
+  <body class="front">
+    <header class="head">
+      <div class="topic">Tracker</div>
+      <nav id="profile"></nav>
+    </header>
+    <section class="hero">
+      <h6 class="welcome-text"></h6>
+      <div class="page-header">
+        <h1 style="margin:0;">Completed Tasks</h1>
+        <span class="completed-count" id="count">0</span>
+      </div>
+      <h4 style="color:white; margin:0;">Great work! Here are your finished tasks.</h4>
+      <button class="back-btn" onclick="window.location.href='home.html'">← Back to Tasks</button>
+      <div class="tasks" id="taskContainer"></div>
+    </section>
+
+    <script>
+      let userData = JSON.parse(localStorage.getItem("currentUser"));
+      let user = userData ? userData.username : null;
+
+      let welcome = document.querySelector(".welcome-text");
+      welcome.innerHTML = user ? `Welcome <b>${user}</b>` : "Welcome";
+
+      if (user) {
+        let nav = document.getElementById("profile");
+        let pfp = document.createElement("h3");
+        pfp.innerText = user;
+        nav.appendChild(pfp);
+      }
+
+      if (!user) {
+        document.getElementById("taskContainer").innerHTML = "<p class='empty-msg'>Please log in first.</p>";
+      } else {
+        let completedKey = user + "_completed";
+
+        function renderCompleted() {
+          let completedTasks = JSON.parse(localStorage.getItem(completedKey)) || [];
+          let container = document.getElementById("taskContainer");
+          container.innerHTML = "";
+
+          document.getElementById("count").innerText = completedTasks.length;
+
+          if (completedTasks.length === 0) {
+            container.innerHTML = "<p class='empty-msg'>No completed tasks yet. Go crush some tasks! 💪</p>";
+            return;
+          }
+
+          completedTasks.forEach((task, index) => {
+            let card = document.createElement("div");
+            card.className = "completed-card";
+            card.innerHTML = `
+              <div class="card-left">
+                <div class="check-icon">✓</div>
+                <div>
+                  <div class="tip-title">${task.title}</div>
+                  <div class="tip-desc">${task.desc}</div>
+                </div>
+              </div>
+              <button class="delete-btn">Delete</button>
+            `;
+            card.querySelector(".delete-btn").addEventListener("click", () => {
+              let tasks = JSON.parse(localStorage.getItem(completedKey)) || [];
+              tasks.splice(index, 1);
+              localStorage.setItem(completedKey, JSON.stringify(tasks));
+              renderCompleted();
+            });
+            container.appendChild(card);
+          });
+        }
+
+        renderCompleted();
+      }
+    </script>
+  </body>
+</html>
